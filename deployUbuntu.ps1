@@ -41,18 +41,6 @@ param(
  [string]
  $ResourceGroupLocation,
 
- #[string]
- #$DatabaseName = "AegisDB", ############### Added Database Name#################3
-
- #[string]
- #$DBServerName = "$($ServerName)DB", ################### Added Server Database Name#################3
- 
- #[string]
- #$AdminSqlLogin = "SqlAdmin", ########### Added SQL Login#####################3
-
- #[string]
- #$Password = "@EGIS-1>assword.", ################### Added SQL Login Password#######################
-
  [string]
  $TemplateFilePath = "template.json",
 
