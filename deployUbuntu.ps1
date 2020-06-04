@@ -33,10 +33,6 @@ param(
  [string]
  $ResourceGroupName,
 
- [Parameter(Mandatory=$True)]################# Added ServerName###############
- [string]
- $ServerName,
-
  [Parameter(Mandatory=$True)]########### Added Mandatory#########################
  [string]
  $ResourceGroupLocation,
@@ -117,6 +113,5 @@ if(Test-Path $ParametersFilePath) {
     New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFilePath;
 }
 Write-Host "Virtual machine created!";
-
 
 Write-Host "|||DEPLOYMENT COMPLETE|||";
