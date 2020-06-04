@@ -50,7 +50,7 @@
         "adminUsername": {
             "type": "string"
         },
-        "adminPublicKey": {
+        "adminPassword": {
             "type": "secureString"
         },
         "diagnosticsStorageAccountName": {
@@ -159,7 +159,7 @@
                     "imageReference": {
                         "publisher": "Canonical",
                         "offer": "UbuntuServer",
-                        "sku": "16.04-LTS",
+                        "sku": "18.04-LTS",
                         "version": "latest"
                     }
                 },
@@ -173,17 +173,7 @@
                 "osProfile": {
                     "computerName": "[parameters('virtualMachineName')]",
                     "adminUsername": "[parameters('adminUsername')]",
-                    "linuxConfiguration": {
-                        "disablePasswordAuthentication": true,
-                        "ssh": {
-                            "publicKeys": [
-                                {
-                                    "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
-                                    "keyData": "[parameters('adminPublicKey')]"
-                                }
-                            ]
-                        }
-                    }
+                    "adminPassword": "[parameters('adminPassword')]"
                 },
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
@@ -202,6 +192,29 @@
             "kind": "[parameters('diagnosticsStorageAccountKind')]",
             "sku": {
                 "name": "[parameters('diagnosticsStorageAccountType')]"
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deploymentScripts",
+            "apiVersion": "2019-10-01-preview",
+            "name": "runPowerShellInlineWithOutput",
+            "location": "[resourceGroup().location]",
+            "kind": "AzurePowerShell",
+            "identity": {
+              "type": "userAssigned",
+              "userAssignedIdentities": {
+                "[parameters('identity')]": {
+                }
+              }
+            },
+            "properties": {
+              "forceUpdateTag": "[parameters('utcValue')]",
+              "azPowerShellVersion": "3.0",
+              "primaryScriptUri": "https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/CreateFolder.sh",
+              "arguments": "[concat('-name ', parameters('name'))]",
+              "timeout": "PT1H",
+              "cleanupPreference": "OnSuccess",
+              "retentionInterval": "P1D"
             }
         }
     ],
