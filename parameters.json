@@ -6,20 +6,22 @@
             "value": "westus2"
         },
         "networkInterfaceName": {
-            "value": "ubuntutest698"
+            "value": "ubuntutest181"
         },
         "networkSecurityGroupName": {
-            "value": "UbuntuTest-nsg"
+            "value": "UbuntuTest1-nsg"
         },
         "networkSecurityGroupRules": {
             "value": [
                 {
-                    "name": "SSH",
+                    "name": "default-allow-ssh",
                     "properties": {
-                        "priority": 300,
+                        "priority": 1000,
                         "protocol": "TCP",
                         "access": "Allow",
                         "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
                         "sourceAddressPrefix": "*",
                         "sourcePortRange": "*",
                         "destinationAddressPrefix": "*",
@@ -50,7 +52,7 @@
             ]
         },
         "publicIpAddressName": {
-            "value": "UbuntuTest-ip"
+            "value": "UbuntuTest1-ip"
         },
         "publicIpAddressType": {
             "value": "Dynamic"
@@ -59,7 +61,7 @@
             "value": "Basic"
         },
         "virtualMachineName": {
-            "value": "UbuntuTest"
+            "value": "UbuntuTest1"
         },
         "virtualMachineRG": {
             "value": "HashCrackTest"
@@ -71,10 +73,10 @@
             "value": "Standard_B1s"
         },
         "adminUsername": {
-            "value": "AzureUser"
+            "value": "HashCrackUser1"
         },
-        "adminPublicKey": {
-            "value": null
+        "adminPassword": {
+            "value": "This is a basic passphrase"
         },
         "diagnosticsStorageAccountName": {
             "value": "hashcracktestdiag"
