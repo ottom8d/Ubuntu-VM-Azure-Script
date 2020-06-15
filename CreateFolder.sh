@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mkdir "testDirectory"
+mkdir "/home/HashCrackUser1/testDirectory"
