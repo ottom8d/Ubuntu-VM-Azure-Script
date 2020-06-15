@@ -69,7 +69,8 @@
     "variables": {
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
         "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
+        "USERASSIGNEDIDENTITYNAME": "UAMI"
     },
     "resources": [
         {
@@ -197,21 +198,19 @@
         {
             "type": "Microsoft.Resources/deploymentScripts",
             "apiVersion": "2019-10-01-preview",
-            "name": "runPowerShellInlineWithOutput",
+            "name": "runBashWithOutput",
             "location": "[resourceGroup().location]",
-            "kind": "AzurePowerShell",
+            "kind": "AzureCLI",
             "identity": {
               "type": "userAssigned",
               "userAssignedIdentities": {
-                "[parameters('identity')]": {
+                "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('USERASSIGNEDIDENTITYNAME'))]": {}
                 }
-              }
             },
             "properties": {
-              "forceUpdateTag": "[parameters('utcValue')]",
-              "azPowerShellVersion": "3.0",
+              "azCliVersion": "2.0.80",
               "primaryScriptUri": "https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/CreateFolder.sh",
-              "arguments": "[concat('-name ', parameters('name'))]",
+              "arguments": "",
               "timeout": "PT1H",
               "cleanupPreference": "OnSuccess",
               "retentionInterval": "P1D"
