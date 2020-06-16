@@ -70,7 +70,8 @@
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
         "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
-        "USERASSIGNEDIDENTITYNAME": "UAMI"
+        "USERASSIGNEDIDENTITYNAME": "UAMI",
+        "vmName": "UbuntuTest1"
     },
     "resources": [
         {
@@ -196,26 +197,30 @@
             }
         },
         {
-            "type": "Microsoft.Resources/deploymentScripts",
-            "apiVersion": "2019-10-01-preview",
-            "name": "runBashWithOutput",
+            "name": "UbuntuTest1/config-app",
+            "type": "Microsoft.Compute/virtualMachines/extensions",
             "location": "[resourceGroup().location]",
-            "kind": "AzureCLI",
-            "identity": {
-              "type": "userAssigned",
-              "userAssignedIdentities": {
-                "[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('USERASSIGNEDIDENTITYNAME'))]": {}
-                }
+            "apiVersion": "2019-03-01",
+            "dependsOn": [
+                "[concat('Microsoft.Compute/virtualMachines/', concat(parameters('virtualMachineName')))]"
+            ],
+            "tags": {
+              "displayName": "config-app"
             },
             "properties": {
-              "azCliVersion": "2.0.80",
-              "primaryScriptUri": "https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/CreateFolder.sh",
-              "arguments": "",
-              "timeout": "PT1H",
-              "cleanupPreference": "OnSuccess",
-              "retentionInterval": "P1D"
+              "publisher": "Microsoft.Azure.Extensions",
+              "type": "CustomScript",
+              "typeHandlerVersion": "2.1",
+              "autoUpgradeMinorVersion": true,
+              "settings": {
+                },
+              "protectedSettings": {
+                "commandToExecute": "sh CreateFolder.sh",
+                "fileUris": ["https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/CreateFolder.sh"
+                ]  
+              }
             }
-        }
+          }
     ],
     "outputs": {
         "adminUsername": {
