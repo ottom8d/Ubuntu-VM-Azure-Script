@@ -4,7 +4,7 @@ Deploy an Ubuntu Azure machine with a powershell script.
 # CHANGE
 
 ## guacScript.sh:
-password= \n
+password=  
 mypasswd=
 username=       ??
 /home/*student* ??
