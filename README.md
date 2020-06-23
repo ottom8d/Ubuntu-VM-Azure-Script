@@ -1,15 +1,15 @@
 # Ubuntu-VM-Azure-Script
 Deploy an Ubuntu Azure machine with a powershell script.
 
-## CHANGE
+# CHANGE
 
-# guacScript.sh:
+## guacScript.sh:
 password=
 mypasswd=
 username=       ??
 /home/*student* ??
 
-# paramteres.json:
+## paramteres.json:
 location
 security group rules
 virtual network name
@@ -19,8 +19,8 @@ virtual machine name
 Admin username  ??
 admin password  ??
 
-# template.json:
+## template.json:
 command to execute createfolder.sh
 
-# deployUbuntu.ps1
+## deployUbuntu.ps1
 add two other machines to script
