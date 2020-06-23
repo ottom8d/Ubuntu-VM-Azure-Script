@@ -1,7 +1,8 @@
 # Ubuntu-VM-Azure-Script
 Deploy an Ubuntu Azure machine with a powershell script.
 
-# CHANGE
+# CHANGE  
+Change resource group names and machine names to be more production
 
 ## guacScript.sh:
 password=  
