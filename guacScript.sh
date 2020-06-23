@@ -32,3 +32,7 @@ echo 'unset DBUS_SESSION_BUS_ADDRESS' >> /home/student/.vnc/xstartup
 echo 'xrdb $HOME/.Xresources' >> /home/student/.vnc/xstartup
 echo 'xsetroot -solid grey' >> /home/student/.vnc/xstartup
 echo 'startxfce4 &' >> /home/student/.vnc/xstartup
+touch /etc/init.d/vncserver
+chmod +x /etc/init.d/vncserver
+# I have a long file for you to echo into /etc/init.d/vncserver
+apt-get install -y xfce4 xfce4-goodies
