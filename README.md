@@ -20,6 +20,7 @@ Admin username  ??
 admin password  ??  
 
 ## template.json:
+change premium storage to hdd  
 command to execute createfolder.sh  
 
 ## deployUbuntu.ps1
