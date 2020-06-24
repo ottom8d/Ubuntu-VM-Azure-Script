@@ -197,7 +197,7 @@
             }
         },
         {
-            "name": "UbuntuTest1/config-app",
+            "name": "UbuntuTest2/config-app",
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "location": "[resourceGroup().location]",
             "apiVersion": "2019-03-01",
@@ -213,10 +213,12 @@
               "typeHandlerVersion": "2.1",
               "autoUpgradeMinorVersion": true,
               "settings": {
+                  "skipDos2Unix":false
                 },
               "protectedSettings": {
-                "commandToExecute": "sh CreateFolder.sh",
-                "fileUris": ["https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/CreateFolder.sh"
+                "commandToExecute": "sudo ./guacScript.sh",
+                "script": "",
+                "fileUris": ["https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/guacScript.sh"
                 ]  
               }
             }
