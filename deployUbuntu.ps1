@@ -38,10 +38,10 @@ param(
  $ResourceGroupLocation,
 
  [string]
- $TemplateFilePath = "template.json",
+ $guacTemplateFilePath = "guacTemplate.json",
 
  [string]
- $ParametersFilePath = "parameters.json"
+ $guacParametersFilePath = "guacParameters.json"
 )
 
 $AzModuleVersion = "2.0.0"
@@ -107,11 +107,12 @@ else{
 # Start the deployment
 Write-Host "|||STARTING DEPLOYMENT|||";
 Write-Host "Creating virtual machine...";
-if(Test-Path $ParametersFilePath) {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFilePath -TemplateParameterFile $ParametersFilePath;
+if(Test-Path $guacParametersFilePath) {
+    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $guacTemplateFilePath -TemplateParameterFile $guacParametersFilePath;
 } else {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFilePath;
+    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $guacTemplateFilePath;
 }
 Write-Host "Virtual machine created!";
+
 
 Write-Host "|||DEPLOYMENT COMPLETE|||";
