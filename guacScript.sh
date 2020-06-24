@@ -8,8 +8,8 @@ pass=$(perl -e 'print crypt($ARGV[0], "password")' $password)
 useradd -m -p "$pass" "$username"
 # installing guacmole
 apt-get install guacamole-tomcat
-# change current directory
-"http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/1.1.0/binary/guacamole-1.1.0.war" -O /var/lib/tomcat8/webapps/guacamole.war  
+# wget
+wget "http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/1.1.0/binary/guacamole-1.1.0.war" -O /var/lib/tomcat8/webapps/guacamole.war  
 touch /etc/tomcat8/Catalina/localhost/guacamole.xml
 echo '<Context path="/guacamole" docbase="/var/lib/tomcat8/webapps/guacamole.war">' > /etc/tomcat8/Catalina/localhost/guacamole.xml
 echo " <Resources allowLinking='true' />" >> /etc/tomcat8/Catalina/localhost/guacamole.xml
@@ -72,3 +72,7 @@ touch /etc/init.d/vncserver
 chmod +x /etc/init.d/vncserver
 # I have a long file for you to echo into /etc/init.d/vncserver
 apt-get install -y xfce4 xfce4-goodies
+# update
+updatedb
+# Start guac service
+service guacd start
