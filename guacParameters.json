@@ -67,7 +67,7 @@
             "value": "HashCrackTest"
         },
         "osDiskType": {
-            "value": "Premium_LRS"
+            "value": "Standard_LRS"
         },
         "virtualMachineSize": {
             "value": "Standard_B1s"
