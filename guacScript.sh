@@ -9,12 +9,45 @@ useradd -m -p "$pass" "$username"
 # installing guacmole
 apt-get install guacamole-tomcat
 # change current directory
-cd /var/lib/tomcat8/webapps/
-wget http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/1.1.0/binary/guacamole-1.1.0.war
+"http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/1.1.0/binary/guacamole-1.1.0.war" -O /var/lib/tomcat8/webapps/guacamole.war  
 touch /etc/tomcat8/Catalina/localhost/guacamole.xml
 echo '<Context path="/guacamole" docbase="/var/lib/tomcat8/webapps/guacamole.war">' > /etc/tomcat8/Catalina/localhost/guacamole.xml
 echo " <Resources allowLinking='true' />" >> /etc/tomcat8/Catalina/localhost/guacamole.xml
 echo "</Context>" >> /etc/tomcat8/Catalina/localhost/guacamole.xml
+# edit the user-mapping.xml file
+printf '<user-mapping>
+    <!-- Example user configurations are given below. For more information,
+         see the user-mapping.xml section of the Guacamole configuration
+         documentation: http://guac-dev.org/Configuring%%20Guacamole -->
+    <!-- Per-user authentication and config information -->
+    <authorize username="student" password="hey this is a long student password">
+        <connection name="localVNC">
+            <protocol>vnc</protocol>
+            <param name="hostname">localhost</param>
+            <param name="port">5901</param>
+            <param name="password">password</param>
+        </connection>
+        <connection name="attackerSSH">
+            <protocol>ssh</protocol>
+            <param name="hostname">10.0.18.5</param>
+            <param name="port">22</param>
+        </connection>
+    </authorize>
+    <!-- Another user, but using md5 to hash the password
+         (example below uses the md5 hash of "PASSWORD") -->
+    <!--
+    <authorize
+            username="USERNAME2"
+            password="319f4d26e3c536b5dd871bb2c52e3178"
+            encoding="md5">
+        <protocol>vnc</protocol>
+        <param name="hostname">localhost</param>
+        <param name="port">5901</param>
+        <param name="password">VNCPASS</param>
+    </authorize>
+    -->
+</user-mapping>' > /etc/guacamole/user-mapping.xml
+# install vnc server
 apt-get install vnc4server
 mkdir /etc/vncserver
 touch /etc/vncserver/vncservers.conf
