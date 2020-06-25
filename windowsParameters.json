@@ -1,0 +1,57 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westus2"
+        },
+        "networkInterfaceName": {
+            "value": "windows101"
+        },
+        "networkSecurityGroupId": {
+            "value": "/subscriptions/eae0bdae-0163-446e-9e19-4c92589cafb0/resourceGroups/HashCrackTest/providers/Microsoft.Network/networkSecurityGroups/Guac1-nsg"
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/eae0bdae-0163-446e-9e19-4c92589cafb0/resourceGroups/HashCrackTest/providers/Microsoft.Network/virtualNetworks/HashCrackTest-vnet"
+        },
+        "publicIpAddressName": {
+            "value": "Windows1-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "virtualMachineName": {
+            "value": "Windows1"
+        },
+        "virtualMachineComputerName": {
+            "value": "Windows1"
+        },
+        "virtualMachineRG": {
+            "value": "HashCrackTest"
+        },
+        "osDiskType": {
+            "value": "Standard_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B1s"
+        },
+        "adminUsername": {
+            "value": "HashCrackUser1"
+        },
+        "adminPassword": {
+            "value": "This is a basic passphrase"
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "hashcracktestdiag"
+        },
+        "diagnosticsStorageAccountId": {
+            "value": "/subscriptions/eae0bdae-0163-446e-9e19-4c92589cafb0/resourceGroups/HashCrackTest/providers/Microsoft.Storage/storageAccounts/hashcracktestdiag"
+        }
+    }
+}
