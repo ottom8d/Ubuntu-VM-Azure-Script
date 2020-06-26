@@ -67,22 +67,22 @@
         }
     },
     "variables": {
-        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
-        "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+        "count": "1",
+        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', concat(parameters('networkSecurityGroupName'), variables('count')))]",
+        "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', concat(parameters('virtualNetworkName'), variables('count')))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
-        "USERASSIGNEDIDENTITYNAME": "UAMI",
-        "vmName": "UbuntuTest1"
+        "USERASSIGNEDIDENTITYNAME": "UAMI"
     },
     "resources": [
         {
-            "name": "[parameters('networkInterfaceName')]",
+            "name": "[concat(parameters('networkInterfaceName'), variables('count'))]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2019-07-01",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]",
-                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
-                "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName'))]"
+                "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'), variables('count'))]",
+                "[concat('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'), variables('count'))]",
+                "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName'), variables('count'))]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -94,7 +94,7 @@
                             },
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIpAddress": {
-                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
+                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', concat(parameters('publicIpAddressName'), variables('count')))]"
                             }
                         }
                     }
@@ -105,7 +105,7 @@
             }
         },
         {
-            "name": "[parameters('networkSecurityGroupName')]",
+            "name": "[concat(parameters('networkSecurityGroupName'), variables('count'))]",
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2019-02-01",
             "location": "[parameters('location')]",
@@ -114,7 +114,7 @@
             }
         },
         {
-            "name": "[parameters('virtualNetworkName')]",
+            "name": "[concat(parameters('virtualNetworkName'), variables('count'))]",
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2019-09-01",
             "location": "[parameters('location')]",
@@ -126,7 +126,7 @@
             }
         },
         {
-            "name": "[parameters('publicIpAddressName')]",
+            "name": "[concat(parameters('publicIpAddressName'), variables('count'))]",
             "type": "Microsoft.Network/publicIpAddresses",
             "apiVersion": "2019-02-01",
             "location": "[parameters('location')]",
@@ -138,12 +138,12 @@
             }
         },
         {
-            "name": "[parameters('virtualMachineName')]",
+            "name": "[concat(parameters('virtualMachineName'), variables('count'))]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2019-07-01",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'))]",
+                "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'), variables('count'))]",
                 "[concat('Microsoft.Storage/storageAccounts/', parameters('diagnosticsStorageAccountName'))]"
             ],
             "properties": {
@@ -168,12 +168,12 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaceName'))]"
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaceName'), variables('count')))]"
                         }
                     ]
                 },
                 "osProfile": {
-                    "computerName": "[parameters('virtualMachineName')]",
+                    "computerName": "[concat(parameters('virtualMachineName'), variables('count'))]",
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPassword')]"
                 },
@@ -197,12 +197,12 @@
             }
         },
         {
-            "name": "UbuntuTest2/config-app",
+            "name": "[concat('Guac', variables('count'), '/config-app')]",
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "location": "[resourceGroup().location]",
             "apiVersion": "2019-03-01",
             "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', concat(parameters('virtualMachineName')))]"
+                "[concat('Microsoft.Compute/virtualMachines/', concat(parameters('virtualMachineName')), concat(variables('count')))]"
             ],
             "tags": {
               "displayName": "config-app"
