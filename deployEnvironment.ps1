@@ -37,6 +37,10 @@ param(
  [string]
  $ResourceGroupLocation,
 
+ [Parameter(Mandatory=$True)]
+ [string]
+ $NumberOfDeployments,
+
  [string]
  $guacTemplateFilePath = "guacTemplate.json",
 
@@ -118,29 +122,53 @@ else{
 
 # Start the deployment
 Write-Host "|||STARTING DEPLOYMENT|||";
-Write-Host "Creating Guacamole virtual machine...";
-if(Test-Path $guacParametersFilePath) {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $guacTemplateFilePath -TemplateParameterFile $guacParametersFilePath;
-} else {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $guacTemplateFilePath;
+$StartTime = $(get-date)
+Write-Host $StartTime
+$OldCount=1
+For ($i=1; $i -le $NumberOfDeployments; $i++) {
+    Write-Host "Creating Guacamole virtual machine...";
+    if(Test-Path $guacParametersFilePath) {
+        New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $guacTemplateFilePath -TemplateParameterFile $guacParametersFilePath;
+    } else {
+        New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $guacTemplateFilePath;
+    }
+    Write-Host "Guacamole Virtual machine created!";
+    
+    Write-Host "Creating Kali virtual machine...";
+    if(Test-Path $kaliParametersFilePath) {
+        New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $kaliTemplateFilePath -TemplateParameterFile $kaliParametersFilePath;
+    } else {
+        New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $kaliTemplateFilePath;
+    }
+    Write-Host "Kali Virtual machine created!";
+    
+    Write-Host "Creating Windows virtual machine...";
+    if(Test-Path $windowsParametersFilePath) {
+        New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $windowsTemplateFilePath -TemplateParameterFile $windowsParametersFilePath;
+    } else {
+        New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $windowsTemplateFilePath;
+    }
+    Write-Host "Windows Virtual machine created!";
+    $ElapsedTime = $(get-date) - $StartTime
+    Write-Host "Elapsed Time = $ElapsedTime"
+    
+    $NewCount = $OldCount+1
+    ##### Then find and replace the template count variable with the current instance number incremented by 1
+    $InputFiles = Get-Item *
+    $OldString  = "`"count`": `"$OldCount`""
+    $NewString  = "`"count`": `"$NewCount`""
+    $InputFiles | ForEach-Object {
+        (Get-Content -Path $_.FullName).Replace($OldString,$NewString) | Set-Content -Path $_.FullName
+    }
+    $OldCount = $NewCount
 }
-Write-Host "Guacamole Virtual machine created!";
-
-Write-Host "Creating Kali virtual machine...";
-if(Test-Path $kaliParametersFilePath) {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $kaliTemplateFilePath -TemplateParameterFile $kaliParametersFilePath;
-} else {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $kaliTemplateFilePath;
+$ResetIterationCount = $NumberOfDeployments+1
+$InputFiles = Get-Item *
+$OldString  = "`"count`": `"$ResetIterationCount`""
+$NewString  = "`"count`": `"1`""
+$InputFiles | ForEach-Object {
+    (Get-Content -Path $_.FullName).Replace($OldString,$NewString) | Set-Content -Path $_.FullName
 }
-Write-Host "Kali Virtual machine created!";
-
-Write-Host "Creating Windows virtual machine...";
-if(Test-Path $windowsParametersFilePath) {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $windowsTemplateFilePath -TemplateParameterFile $windowsParametersFilePath;
-} else {
-    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $windowsTemplateFilePath;
-}
-Write-Host "Windows Virtual machine created!";
-
-
-Write-Host "|||DEPLOYMENT COMPLETE|||";
+Write-Host "|||DEPLOYMENT COMPLETE|||"
+$ElapsedTime = $(get-date) - $StartTime
+Write-Host "|||Total Elapsed Time = $ElapsedTime|||";
