@@ -41,7 +41,19 @@ param(
  $guacTemplateFilePath = "guacTemplate.json",
 
  [string]
- $guacParametersFilePath = "guacParameters.json"
+ $guacParametersFilePath = "guacParameters.json",
+
+ [string]
+ $kaliTemplateFilePath = "kaliTemplate.json",
+
+ [string]
+ $kaliParametersFilePath = "kaliParameters.json",
+
+ [string]
+ $windowsTemplateFilePath = "windowsTemplate.json",
+
+ [string]
+ $windowsParametersFilePath = "windowsParameters.json"
 )
 
 $AzModuleVersion = "2.0.0"
@@ -106,13 +118,29 @@ else{
 
 # Start the deployment
 Write-Host "|||STARTING DEPLOYMENT|||";
-Write-Host "Creating virtual machine...";
+Write-Host "Creating Guacamole virtual machine...";
 if(Test-Path $guacParametersFilePath) {
     New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $guacTemplateFilePath -TemplateParameterFile $guacParametersFilePath;
 } else {
     New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $guacTemplateFilePath;
 }
-Write-Host "Virtual machine created!";
+Write-Host "Guacamole Virtual machine created!";
+
+Write-Host "Creating Kali virtual machine...";
+if(Test-Path $kaliParametersFilePath) {
+    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $kaliTemplateFilePath -TemplateParameterFile $kaliParametersFilePath;
+} else {
+    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $kaliTemplateFilePath;
+}
+Write-Host "Kali Virtual machine created!";
+
+Write-Host "Creating Windows virtual machine...";
+if(Test-Path $windowsParametersFilePath) {
+    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $windowsTemplateFilePath -TemplateParameterFile $windowsParametersFilePath;
+} else {
+    New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $windowsTemplateFilePath;
+}
+Write-Host "Windows Virtual machine created!";
 
 
 Write-Host "|||DEPLOYMENT COMPLETE|||";

@@ -1,7 +1,7 @@
 #!/bin/bash
 touch /home/HashCrackUser1/file
-apt-get update
-apt-get upgrade
+sudo apt-get update
+sudo apt-get upgrade
 # {create the nonroot user account in a way which can be scripted (pretty sure useradd instead of adduser, but then we need to set their default shell and passwd manually)}
 password="This is a basic student password"
 username="student"
