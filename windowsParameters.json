@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "value": "westus2"
+            "value": "eastus"
         },
         "networkInterfaceName": {
-            "value": "windows101"
+            "value": "windows10"
         },
         "networkSecurityGroupId": {
-            "value": "/subscriptions/eae0bdae-0163-446e-9e19-4c92589cafb0/resourceGroups/HashCrackTest/providers/Microsoft.Network/networkSecurityGroups/Guac1-nsg"
+            "value": "/subscriptions/eae0bdae-0163-446e-9e19-4c92589cafb0/resourceGroups/HashCrackTest/providers/Microsoft.Network/networkSecurityGroups/Guac-nsg"
         },
         "subnetName": {
             "value": "default"
@@ -18,7 +18,7 @@
             "value": "/subscriptions/eae0bdae-0163-446e-9e19-4c92589cafb0/resourceGroups/HashCrackTest/providers/Microsoft.Network/virtualNetworks/HashCrackTest-vnet"
         },
         "publicIpAddressName": {
-            "value": "Windows1-ip"
+            "value": "Windows-ip"
         },
         "publicIpAddressType": {
             "value": "Dynamic"
@@ -27,10 +27,10 @@
             "value": "Basic"
         },
         "virtualMachineName": {
-            "value": "Windows1"
+            "value": "Windows"
         },
         "virtualMachineComputerName": {
-            "value": "Windows1"
+            "value": "Windows"
         },
         "virtualMachineRG": {
             "value": "HashCrackTest"
