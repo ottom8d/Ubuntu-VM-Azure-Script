@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "value": "westus2"
+            "value": "eastus"
         },
         "networkInterfaceName": {
-            "value": "ubuntutest181"
+            "value": "Guac10"
         },
         "networkSecurityGroupName": {
-            "value": "UbuntuTest1-nsg"
+            "value": "Guac-nsg"
         },
         "networkSecurityGroupRules": {
             "value": [
@@ -26,6 +26,21 @@
                         "sourcePortRange": "*",
                         "destinationAddressPrefix": "*",
                         "destinationPortRange": "22"
+                    }
+                },
+                {
+                    "name": "default-allow-guacport",
+                    "properties": {
+                        "priority": 1010,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "8080"
                     }
                 }
             ]
@@ -52,7 +67,7 @@
             ]
         },
         "publicIpAddressName": {
-            "value": "UbuntuTest1-ip"
+            "value": "Guac-ip"
         },
         "publicIpAddressType": {
             "value": "Dynamic"
@@ -61,7 +76,7 @@
             "value": "Basic"
         },
         "virtualMachineName": {
-            "value": "UbuntuTest1"
+            "value": "Guac"
         },
         "virtualMachineRG": {
             "value": "HashCrackTest"
