@@ -88,4 +88,6 @@ echo 'Type=simple' >> /etc/systemd/system/wrapperMSF
 echo 'ExecStart=/root/linuxWrapperMSF.sh' >> /etc/systemd/system/wrapperMSF
 echo '[Install]' >> /etc/systemd/system/wrapperMSF
 echo 'WantedBy=multi-user.target' >> /etc/systemd/system/wrapperMSF
+cp wrapperMSF /etc/systemd/system/wrapperMSF.service
+chmod 644 /etc/systemd/systemd/wrapperMSF.service
 systemctl start wrapperMSF
