@@ -1,22 +1,18 @@
-#!/bin/bash
+export DEBIAN_FRONTEND=noninteractive apt install
 apt update -y
-apt upgrade -y
-# msfconsole
-apt-get install curl -y
-curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/>apt install ocl-icd-libopencl1 git build-essential -y
-# hashcat
-mkdir /installs && mkdir /installs/apps && cd /installs/apps
-git clone https://github.com/hashcat/hashcat
-cd hashcat
-git submodule update –init
-make
-cd ../
-git clone https://github.com/hashcat/hashcat-utils
-cd hashcat-utils/src
-make
-cp *.bin ../bin
-cd /home/HashCrackUser1
-echo "export PATH=$PATH:/home/HashCrackUser1/hashcat" >> ~/.bashrc
-source ~/.bashrc
-# john
-apt-get install john -y
+mkdir -p /labs/gatherHashes
+mkdir -p /labs/crackHashes/otherHashes
+mkdir -p /labs/hashID
+mkdir -p /labs/john-jumbo
+apt-get -y --force-confold install git build-essential libssl-dev zlib1g-dev
+cd /labs/john-jumbo
+git clone https://github.com/magnumripper/JohnTheRipper -b bleeding-jumbo john
+cd /labs/john-jumbo/john/src
+./configure && make -s clean && make -sj4
+cd /labs/gatherHashes/
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/winMetListener.sh
+chmod +x winMetListener.sh
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/winNCListener.sh
+chmod +x winNCListener.sh
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxMetListener.sh
+chmod +x linuxMetListener.sh
