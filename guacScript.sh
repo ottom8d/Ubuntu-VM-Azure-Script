@@ -24,9 +24,9 @@ printf '<user-mapping>
          documentation: http://guac-dev.org/Configuring%%20Guacamole -->
     <!-- Per-user authentication and config information -->
     <authorize username="student" password="hey this is a long student password">
-        <connection name="KaliVNC">
+        <connection name="LocalVNC">
             <protocol>vnc</protocol>
-            <param name="hostname">10.0.19.5</param>
+            <param name="hostname">localhost</param>
             <param name="port">5901</param>
             <param name="password">password</param>
         </connection>
