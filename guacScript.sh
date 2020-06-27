@@ -21,19 +21,19 @@ echo "</Context>" >> /etc/tomcat8/Catalina/localhost/guacamole.xml
 printf '<user-mapping>
     <!-- Example user configurations are given below. For more information,
          see the user-mapping.xml section of the Guacamole configuration
-         documentation: http://guac-dev.org/Configuring%%20Guacamole -->
+         documentation: http://guac-dev.org/Configuring%20Guacamole -->
     <!-- Per-user authentication and config information -->
     <authorize username="student" password="hey this is a long student password">
-        <connection name="LocalVNC">
+        <connection name="KaliVNC">
             <protocol>vnc</protocol>
-            <param name="hostname">localhost</param>
+            <param name="hostname">10.0.19.5</param>
             <param name="port">5901</param>
-            <param name="password">password</param>
+            <param name="password">dh?w2qa3</param>
         </connection>
     </authorize>
     <!-- Another user, but using md5 to hash the password
          (example below uses the md5 hash of "PASSWORD") -->
-    <!--
+ <!--
     <authorize
             username="USERNAME2"
             password="319f4d26e3c536b5dd871bb2c52e3178"
@@ -43,7 +43,7 @@ printf '<user-mapping>
         <param name="port">5901</param>
         <param name="password">VNCPASS</param>
     </authorize>
-    -->
+-->
 </user-mapping>' > /etc/guacamole/user-mapping.xml
 # install vnc server
 apt-get install vnc4server
