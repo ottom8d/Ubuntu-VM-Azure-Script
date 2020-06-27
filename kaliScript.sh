@@ -27,7 +27,7 @@ echo 'Type=dbus' >>  /etc/systemd/system/tightvncserver.service
 echo 'ExecStart=/usr/bin/tightvncserver :1' >>  /etc/systemd/system/tightvncserver.service
 echo 'User=HashCrackUser1' >> /etc/systemd/system/tightvncserver.service
 echo 'Type=forking' >> /etc/systemd/system/tightvncserver.service
-echo '\n' >> /etc/systemd/system/tightvncserver.service
+printf '\n' >> /etc/systemd/system/tightvncserver.service
 echo '[Install]' >>  /etc/systemd/system/tightvncserver.service
 echo 'WantedBy=multi-user.target' >>  /etc/systemd/system/tightvncserver.service
 chown root:root /etc/systemd/system/tightvncserver.service
