@@ -1,10 +1,10 @@
 export DEBIAN_FRONTEND=noninteractive sudo apt install
-apt update -y
+sudo apt update -y
 mkdir -p /labs/gatherHashes
 mkdir -p /labs/crackHashes/otherHashes
 mkdir -p /labs/hashID
 mkdir -p /labs/john-jumbo
-sudo apt-get -y --force-confold install git build-essential libssl-dev zlib1g-dev
+sudo apt-get -y install git build-essential libssl-dev zlib1g-dev
 cd /labs/john-jumbo
 git clone https://github.com/magnumripper/JohnTheRipper -b bleeding-jumbo john
 cd /labs/john-jumbo/john/src
