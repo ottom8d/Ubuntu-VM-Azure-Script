@@ -12,7 +12,7 @@ export DEBIAN_FRONTEND=noninteractive apt-get install -y
 apt-get install guacamole-tomcat -y
 invoke-rc.d tomcat8 restart
 # wget
-wget "http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/1.1.0/binary/guacamole-1.1.0.war" -O /var/lib/tomcat8/webapps/guacamole.war  
+wget "http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/1.1.0/binary/guacamole-1.1.0.war" -O /var/lib/tomcat8/webapps/guacamole.war
 touch /etc/tomcat8/Catalina/localhost/guacamole.xml
 echo '<Context path="/guacamole" docbase="/var/lib/tomcat8/webapps/guacamole.war">' > /etc/tomcat8/Catalina/localhost/guacamole.xml
 echo " <Resources allowLinking='true' />" >> /etc/tomcat8/Catalina/localhost/guacamole.xml
