@@ -216,13 +216,13 @@
                   "skipDos2Unix":false
                 },
               "protectedSettings": {
-                "commandToExecute": "sudo ./guacScript.sh",
+                "commandToExecute": "echo 'This is a basic passphrase' | sudo -S ./guacScript.sh",
                 "script": "",
                 "fileUris": ["https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/guacScript.sh"
                 ]  
               }
             }
-          }
+        }
     ],
     "outputs": {
         "adminUsername": {
