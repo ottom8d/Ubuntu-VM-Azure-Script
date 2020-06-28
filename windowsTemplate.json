@@ -121,9 +121,9 @@
                         }
                     },
                     "imageReference": {
-                        "publisher": "MicrosoftWindowsDesktop",
-                        "offer": "Windows-10",
-                        "sku": "20h1-pro",
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2016-Datacenter",
                         "version": "latest"
                     }
                 },
@@ -150,7 +150,29 @@
                     }
                 }
             }
-        }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat('Windows', variables('count'), '/CustomScriptExtension')]",
+            "apiVersion": "2018-10-01",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachines/', concat(parameters('virtualMachineName'), variables('count')))]"
+            ],
+            "properties": {
+                "publisher": "Microsoft.Compute",
+                "type": "CustomScriptExtension",
+                "typeHandlerVersion": "1.7",
+                "autoUpgradeMinorVersion":true,
+                "settings": {
+                    "fileUris": [
+                    "https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/windowsScript.ps1"
+         
+                ],
+                "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File windowsScript.ps1"
+              }
+            }
+          }
     ],
     "outputs": {
         "adminUsername": {
