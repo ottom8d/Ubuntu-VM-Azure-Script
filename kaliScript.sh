@@ -17,8 +17,14 @@ wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/winNCListener.sh -O /labs/
 chmod +x /labs/gatherHashes/winNCListener.sh
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxMetListener.sh -O /labs/gatherHashes/linuxMetListener.sh
 chmod +x /labs/gatherHashes/linuxMetListener.sh
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/important.zip -O /labs/crackHashes/otherHashes/important.zip
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/list.xlsx -O /labs/crackHashes/otherHashes/list.xlsx
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/id_rsa -O /labs/crackHashes/otherHashes/id_rsa
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/SecurityStrategyProposal.pdf -O /labs/crackHashes/otherHashes/SecurityStrategyProposal.pdf
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/handler.rc -O /root/handler.rc
+chmod +x /root/handler.rc
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/launcher.sh -O /root/launcher.sh
+chmod +x /root/launcher.sh
 #printf "dh?w2qa3\ndh?w2qa3\n\n" | vncpasswd -f
 umask 0077
 mkdir -p "$HOME/.vnc"
