@@ -121,10 +121,10 @@
                         }
                     },
                     "imageReference": {
-                        "publisher": "credativ",
-                        "offer": "Debian",
-                        "sku": "9",
-                        "version": "latest"
+                        "publisher": "kali-linux",
+                        "offer": "kali-linux",
+                        "sku": "kali",
+                        "version": "2019.2.0"
                     }
                 },
                 "networkProfile": {
@@ -145,10 +145,15 @@
                         "storageUri": "[concat('https://', parameters('diagnosticsStorageAccountName'), '.blob.core.windows.net/')]"
                     }
                 }
+            },
+            "plan": {
+                "name": "kali",
+                "publisher": "kali-linux",
+                "product": "kali-linux"
             }
         },
         {
-            "name": "Kali1/config-app",
+            "name": "[concat('Kali', variables('count'), '/config-app')]",
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "location": "[resourceGroup().location]",
             "apiVersion": "2019-03-01",
@@ -167,13 +172,13 @@
                   "skipDos2Unix":false
                 },
               "protectedSettings": {
-                "commandToExecute": "./kaliScript.sh",
+                "commandToExecute": "echo 'This is a basic passphrase' | sudo -S ./kaliScript.sh",
                 "script": "",
                 "fileUris": ["https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/kaliScript.sh"
                 ]  
               }
             }
-          }
+        }
     ],
     "outputs": {
         "adminUsername": {
