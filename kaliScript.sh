@@ -31,7 +31,7 @@ printf '\n' >> /etc/systemd/system/tightvncserver.service
 echo '[Service]' >> /etc/systemd/system/tightvncserver.service
 echo 'Type=dbus' >>  /etc/systemd/system/tightvncserver.service
 echo 'ExecStart=/usr/bin/tightvncserver :1' >>  /etc/systemd/system/tightvncserver.service
-echo 'User=HashCrackUser1' >> /etc/systemd/system/tightvncserver.service
+echo 'User=root' >> /etc/systemd/system/tightvncserver.service
 echo 'Type=forking' >> /etc/systemd/system/tightvncserver.service
 printf '\n' >> /etc/systemd/system/tightvncserver.service
 echo '[Install]' >>  /etc/systemd/system/tightvncserver.service
