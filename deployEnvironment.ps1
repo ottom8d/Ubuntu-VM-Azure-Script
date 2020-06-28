@@ -38,7 +38,7 @@ param(
  $ResourceGroupLocation,
 
  [Parameter(Mandatory=$True)]
- [string]
+ [int]
  $NumberOfDeployments,
 
  [string]
@@ -133,7 +133,7 @@ For ($i=1; $i -le $NumberOfDeployments; $i++) {
         New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $guacTemplateFilePath;
     }
     Write-Host "Guacamole Virtual machine created!";
-    
+
     Write-Host "Creating Kali virtual machine...";
     if(Test-Path $kaliParametersFilePath) {
         New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $kaliTemplateFilePath -TemplateParameterFile $kaliParametersFilePath;
