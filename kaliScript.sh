@@ -1,3 +1,4 @@
+#!/bin/bash
 export DEBIAN_FRONTEND=noninteractive sudo apt install
 sudo apt update -y
 mkdir -p /labs/gatherHashes
