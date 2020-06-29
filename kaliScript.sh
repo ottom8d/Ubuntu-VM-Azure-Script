@@ -25,7 +25,11 @@ wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/handler.rc -O /root/handle
 chmod +x /root/handler.rc
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/launcher.sh -O /root/launcher.sh
 chmod +x /root/launcher.sh
-gunzip /usr/share/wordlist/rockyou.txt.gz
+mkdir -p /labs/crackHashes/hashcat/
+wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/hashcat-6.0.0.7z -O /labs/crackHashes/hashcat/hashcat-6.0.0.7z
+7z x /labs/crackHashes/hashcat/hashcat-6.0.0.7z
+echo alias hashcat="/labs/crackHashes/hashcat/hashcat-6.0.0/hashcat.bin --force" >> /root/.bashrc
+gunzip /usr/share/wordlists/rockyou.txt.gz
 tac /usr/share/wordlists/rockyou.txt > /labs/crackHashes/tacrockyou.txt
 cd /labs/
 git clone https://github.com/moyix/creddump.git
@@ -50,7 +54,7 @@ chown root:root /etc/systemd/system/tightvncserver.service
 chmod 755 /etc/systemd/system/tightvncserver.service
 systemctl daemon-reload
 systemctl start tightvncserver.service
-rm '/root/.vnc/xstartup'
+rm /root/.vnc/xstartup
 wget https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/xstartup -O /root/.vnc/xstartup
 systemctl daemon-reload
 systemctl restart tightvncserver.service
