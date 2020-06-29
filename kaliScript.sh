@@ -28,7 +28,7 @@ chmod +x /root/launcher.sh
 mkdir -p /labs/crackHashes/hashcat/
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/hashcat-6.0.0.7z -O /labs/crackHashes/hashcat-6.0.0.7z
 7z x /labs/crackHashes/hashcat-6.0.0.7z
-echo 'alias hashcat="/labs/crackHashes/hashcat-6.0.0/hashcat.bin --force" >> /root/.bashrc'
+echo 'alias hashcat="/labs/crackHashes/hashcat-6.0.0/hashcat.bin --force"' >> /root/.bashrc
 gunzip /usr/share/wordlists/rockyou.txt.gz
 tac /usr/share/wordlists/rockyou.txt > /labs/crackHashes/tacrockyou.txt
 cd /labs/
