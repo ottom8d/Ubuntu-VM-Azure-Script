@@ -51,5 +51,6 @@ chmod 755 /etc/systemd/system/tightvncserver.service
 systemctl daemon-reload
 systemctl start tightvncserver.service
 rm '/root/.vnc/xstartup'
+wget https://raw.githubusercontent.com/soupsamich/Ubuntu-VM-Azure-Script/master/xstartup -O /root/.vnc/xstartup
 systemctl daemon-reload
 systemctl restart tightvncserver.service
