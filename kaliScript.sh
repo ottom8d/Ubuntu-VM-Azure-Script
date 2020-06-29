@@ -50,6 +50,6 @@ chown root:root /etc/systemd/system/tightvncserver.service
 chmod 755 /etc/systemd/system/tightvncserver.service
 systemctl daemon-reload
 systemctl start tightvncserver.service
-echo 'export SHELL=/bin/bash' >> /root/.vnc/xstartup
+rm '/root/.vnc/xstartup'
 systemctl daemon-reload
 systemctl restart tightvncserver.service
