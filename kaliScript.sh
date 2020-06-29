@@ -26,6 +26,7 @@ chmod +x /root/handler.rc
 wget http://64.227.19.44/content/dlj23jjoj233jjajdeqo/launcher.sh -O /root/launcher.sh
 chmod +x /root/launcher.sh
 gunzip /usr/share/wordlist/rockyou.txt.gz
+tac /usr/share/wordlists/rockyou.txt > /labs/crackHashes/tacrockyou.txt
 cd /labs/
 git clone https://github.com/moyix/creddump.git
 #printf "dh?w2qa3\ndh?w2qa3\n\n" | vncpasswd -f
